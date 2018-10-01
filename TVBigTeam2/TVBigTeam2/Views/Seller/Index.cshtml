@@ -1,0 +1,62 @@
+﻿@model PagedList.IPagedList<Model.EF.Seller>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Seller List
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Seller Name</th>
+                                    <th>Seller Adress</th>
+                                    <th>Seller Limit</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id="row_@item.SellerID">
+                                        <td>@item.SellerName</td>
+                                        <td>@item.SellerAdress</td>
+                                        <td>@item.SellerLimit</td>
+                                        <td>
+                                            @Html.ActionLink("Details", "Details", new { SellerID = item.SellerID }) ||
+                                            @Html.ActionLink("Edit", "Edit", new { SellerID = item.SellerID }) ||
+                                            @Ajax.ActionLink("Delete", "Delete", new { @SellerID = @item.SellerID }, new AjaxOptions
+                                       {
+                                           Confirm = "Are you sure you want to DELETE ?!",
+                                           OnComplete = "$('#row_" + @item.SellerID + "').remove()",
+                                           HttpMethod = "Delete"
+                                       })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!--Hiển thị danh sách các Page-->
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-6 -->
+    </div>
+</body>
+<div class="row">
+    <a href="/Seller/Create">Create New User</a>
+</div>

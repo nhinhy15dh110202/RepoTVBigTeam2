@@ -1,0 +1,67 @@
+﻿@model Model.EF.Seller
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Seller Details
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div>
+                    <dl class="dl-horizontal" id="@Model.SellerID">
+                        <dt>
+                            Seller Name:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SellerName)
+                        </dd>
+
+                        <dt>
+                            Seller Adress:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SellerAdress)
+                        </dd>
+
+                        <dt>
+                            Seller Limit:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SellerLimit)
+                        </dd>
+
+                        <dt>
+                            Seller Status:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SellerStatus)
+                        </dd>
+
+                        <dt>
+                            Seller Note:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.SellerNote)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { Model.SellerID }) ||
+    @Html.ActionLink("Back to List", "Index")
+</p>
